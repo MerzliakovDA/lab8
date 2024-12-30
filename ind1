@@ -1,0 +1,33 @@
+import random
+
+def calculate_total_sales(july_sales, august_sales):
+    
+
+    total_july_sales = sum(sum(day_sales) for day_sales in july_sales) #Суммируем продажи по дням и магазинам
+    total_august_sales = sum(sum(day_sales) for day_sales in august_sales) #Суммируем продажи по дням и магазинам
+    total_sales = total_july_sales + total_august_sales
+    return total_sales
+
+def generate_random_sales(days, num_stores, max_sales):
+  
+  sales = []
+  for _ in range(days):
+    day_sales = [random.randint(0, max_sales) for _ in range(num_stores)]
+    sales.append(day_sales)
+  return sales
+
+if __name__ == "__main__":
+
+    num_days_july = 31
+    num_days_august = 31
+    num_stores = 2
+    max_daily_sales = 1000 #Максимальная сумма продаж за день для одного магазина
+
+    july_sales = generate_random_sales(num_days_july, num_stores, max_daily_sales)
+    august_sales = generate_random_sales(num_days_august, num_stores, max_daily_sales)
+    
+    total_sales = calculate_total_sales(july_sales, august_sales)
+
+    print("Продажи за июль (по дням и магазинам):", july_sales)
+    print("Продажи за август (по дням и магазинам):", august_sales)
+    print("\nОбщая стоимость проданных товаров за два месяца:", total_sales)
